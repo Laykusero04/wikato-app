@@ -1,0 +1,195 @@
+﻿[
+  {
+    "id": "g1",
+    "native": "Kumusta",
+    "english": "Hello",
+    "romanization": "koo · MOOS · tah"
+  },
+  {
+    "id": "g2",
+    "native": "Marhay na aga",
+    "english": "Good morning",
+    "romanization": "MAR · high nah AH · gah"
+  },
+  {
+    "id": "g3",
+    "native": "Marhay na banggi",
+    "english": "Good evening",
+    "romanization": "MAR · high nah BAHNG · gee"
+  },
+  {
+    "id": "g4",
+    "native": "Kumusta ka?",
+    "english": "How are you?",
+    "romanization": "koo · MOOS · tah kah"
+  },
+  {
+    "id": "c1",
+    "native": "Tabi po",
+    "english": "Please",
+    "romanization": "TAH · bee poh"
+  },
+  {
+    "id": "c2",
+    "native": "Dyos mabalos",
+    "english": "Thank you",
+    "romanization": "joss mah · BAH · los"
+  },
+  {
+    "id": "c3",
+    "native": "Patawada ako",
+    "english": "I'm sorry",
+    "romanization": "pah · tah · WAH · dah ah · KOH"
+  },
+  {
+    "id": "c4",
+    "native": "Dai ko nasasabutan",
+    "english": "I don't understand",
+    "romanization": "die koh nah · sah · sah · BOO · tan"
+  },
+  {
+    "id": "c5",
+    "native": "Iyo / Dai",
+    "english": "Yes / No",
+    "romanization": "EE · yoh / die"
+  },
+  {
+    "id": "h1",
+    "native": "Pwede mo ako tabangan?",
+    "english": "Can you help me?",
+    "romanization": "PWEH · de moh ah · KOH tah · BAH · ngan"
+  },
+  {
+    "id": "h2",
+    "native": "Hain an...?",
+    "english": "Where is...?",
+    "romanization": "HAH · in ahn"
+  },
+  {
+    "id": "h3",
+    "native": "Nawawara ako",
+    "english": "I am lost",
+    "romanization": "nah · wah · WAH · rah ah · KOH"
+  },
+  {
+    "id": "h4",
+    "native": "Apudon mo an pulis",
+    "english": "Call the police",
+    "romanization": "ah · POO · don moh ahn poo · LEES"
+  },
+  {
+    "id": "f1",
+    "native": "An bill, tabi po",
+    "english": "The check, please",
+    "romanization": "ahn beel, TAH · bee poh"
+  },
+  {
+    "id": "f2",
+    "native": "Mesa para sa duwa",
+    "english": "A table for two",
+    "romanization": "MEH · sah pah · rah sah DOO · wah"
+  },
+  {
+    "id": "f3",
+    "native": "An menu, tabi po",
+    "english": "The menu, please",
+    "romanization": "ahn meh · NOO, TAH · bee poh"
+  },
+  {
+    "id": "f4",
+    "native": "Mayong sibuyas",
+    "english": "Without onion",
+    "romanization": "mah · YONG see · BOO · yahs"
+  },
+  {
+    "id": "g5",
+    "native": "Marhay na hapon",
+    "english": "Good afternoon",
+    "romanization": "MAR · high nah HAH · pon"
+  },
+  {
+    "id": "g6",
+    "native": "Paaram",
+    "english": "Goodbye",
+    "romanization": "pah · AH · ram"
+  },
+  {
+    "id": "c6",
+    "native": "Tabi po",
+    "english": "Excuse me",
+    "romanization": "TAH · bee poh"
+  },
+  {
+    "id": "c7",
+    "native": "Daing ano man",
+    "english": "You're welcome",
+    "romanization": "dah · EENG ah · NOH mahn"
+  },
+  {
+    "id": "n1",
+    "native": "Saro",
+    "english": "One",
+    "romanization": "SAH · roh"
+  },
+  {
+    "id": "n2",
+    "native": "Duwa",
+    "english": "Two",
+    "romanization": "DOO · wah"
+  },
+  {
+    "id": "n3",
+    "native": "Tulo",
+    "english": "Three",
+    "romanization": "TOO · loh"
+  },
+  {
+    "id": "i1",
+    "native": "An ngaran ko...",
+    "english": "My name is...",
+    "romanization": "ahn NGAH · ran koh"
+  },
+  {
+    "id": "i2",
+    "native": "Ano an ngaran mo?",
+    "english": "What's your name?",
+    "romanization": "ah · NOH ahn NGAH · ran moh"
+  },
+  {
+    "id": "i3",
+    "native": "Ogmahon ako na mamidbid taka",
+    "english": "Nice to meet you",
+    "romanization": "ohg · mah · HON ah · KOH nah mah · meed · BEED tah · KAH"
+  },
+  {
+    "id": "d1",
+    "native": "Wala",
+    "english": "Left",
+    "romanization": "WAH · lah"
+  },
+  {
+    "id": "d2",
+    "native": "Tuo",
+    "english": "Right",
+    "romanization": "TOO · oh"
+  },
+  {
+    "id": "s1",
+    "native": "Pira?",
+    "english": "How much?",
+    "romanization": "PEE · rah"
+  },
+  {
+    "id": "e1",
+    "native": "Tabang!",
+    "english": "Help!",
+    "romanization": "TAH · bahng"
+  },
+  {
+    "id": "t1",
+    "native": "Ngonyan",
+    "english": "Today",
+    "romanization": "NGOHN · yan"
+  }
+]
+

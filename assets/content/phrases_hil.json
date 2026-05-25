@@ -1,0 +1,195 @@
+﻿[
+  {
+    "id": "g1",
+    "native": "Kumusta",
+    "english": "Hello",
+    "romanization": "koo · MOOS · tah"
+  },
+  {
+    "id": "g2",
+    "native": "Maayong aga",
+    "english": "Good morning",
+    "romanization": "mah · AH · yong AH · gah"
+  },
+  {
+    "id": "g3",
+    "native": "Maayong gab-i",
+    "english": "Good evening",
+    "romanization": "mah · AH · yong gahb · EE"
+  },
+  {
+    "id": "g4",
+    "native": "Kamusta ka?",
+    "english": "How are you?",
+    "romanization": "kah · MOOS · tah kah"
+  },
+  {
+    "id": "c1",
+    "native": "Palihog",
+    "english": "Please",
+    "romanization": "pah · LEE · hog"
+  },
+  {
+    "id": "c2",
+    "native": "Salamat",
+    "english": "Thank you",
+    "romanization": "sah · LAH · mat"
+  },
+  {
+    "id": "c3",
+    "native": "Patawara ko",
+    "english": "I'm sorry",
+    "romanization": "pah · tah · WAH · rah koh"
+  },
+  {
+    "id": "c4",
+    "native": "Wala ko kaintiendi",
+    "english": "I don't understand",
+    "romanization": "wah · LAH koh kah · een · tee · EN · dee"
+  },
+  {
+    "id": "c5",
+    "native": "Huo / Indi",
+    "english": "Yes / No",
+    "romanization": "WHO · oh / EEN · dee"
+  },
+  {
+    "id": "h1",
+    "native": "Pwede mo ko buligan?",
+    "english": "Can you help me?",
+    "romanization": "PWEH · de moh koh boo · LEE · gan"
+  },
+  {
+    "id": "h2",
+    "native": "Diin ang...?",
+    "english": "Where is...?",
+    "romanization": "dee · EEN ahng"
+  },
+  {
+    "id": "h3",
+    "native": "Nadula ako",
+    "english": "I am lost",
+    "romanization": "nah · DOO · lah ah · KOH"
+  },
+  {
+    "id": "h4",
+    "native": "Tawga ang pulis",
+    "english": "Call the police",
+    "romanization": "TAWG · ah ahng poo · LEES"
+  },
+  {
+    "id": "f1",
+    "native": "Ang bill, palihog",
+    "english": "The check, please",
+    "romanization": "ahng beel, pah · LEE · hog"
+  },
+  {
+    "id": "f2",
+    "native": "Lamesa para sa duha",
+    "english": "A table for two",
+    "romanization": "lah · MEH · sah pah · rah sah DOO · hah"
+  },
+  {
+    "id": "f3",
+    "native": "Ang menu, palihog",
+    "english": "The menu, please",
+    "romanization": "ahng meh · NOO, pah · LEE · hog"
+  },
+  {
+    "id": "f4",
+    "native": "Wala sang sibuyas",
+    "english": "Without onion",
+    "romanization": "wah · LAH sahng see · BOO · yahs"
+  },
+  {
+    "id": "g5",
+    "native": "Maayong hapon",
+    "english": "Good afternoon",
+    "romanization": "mah · AH · yong HAH · pon"
+  },
+  {
+    "id": "g6",
+    "native": "Halong",
+    "english": "Goodbye",
+    "romanization": "HAH · long"
+  },
+  {
+    "id": "c6",
+    "native": "Tabi anay",
+    "english": "Excuse me",
+    "romanization": "TAH · bee ah · NIE"
+  },
+  {
+    "id": "c7",
+    "native": "Wala sing ano man",
+    "english": "You're welcome",
+    "romanization": "wah · LAH sing ah · NOH mahn"
+  },
+  {
+    "id": "n1",
+    "native": "Isa",
+    "english": "One",
+    "romanization": "EE · sah"
+  },
+  {
+    "id": "n2",
+    "native": "Duha",
+    "english": "Two",
+    "romanization": "DOO · hah"
+  },
+  {
+    "id": "n3",
+    "native": "Tatlo",
+    "english": "Three",
+    "romanization": "taht · LOH"
+  },
+  {
+    "id": "i1",
+    "native": "Ang ngalan ko amo...",
+    "english": "My name is...",
+    "romanization": "ahng NGAH · lan koh ah · MOH"
+  },
+  {
+    "id": "i2",
+    "native": "Ano ang ngalan mo?",
+    "english": "What's your name?",
+    "romanization": "ah · NOH ahng NGAH · lan moh"
+  },
+  {
+    "id": "i3",
+    "native": "Nalipay ako nga nakilala ko ikaw",
+    "english": "Nice to meet you",
+    "romanization": "nah · LEE · pie ah · KOH ngah nah · kee · LAH · lah koh ee · KAW"
+  },
+  {
+    "id": "d1",
+    "native": "Wala",
+    "english": "Left",
+    "romanization": "WAH · lah"
+  },
+  {
+    "id": "d2",
+    "native": "Tuo",
+    "english": "Right",
+    "romanization": "TOO · oh"
+  },
+  {
+    "id": "s1",
+    "native": "Pila?",
+    "english": "How much?",
+    "romanization": "PEE · lah"
+  },
+  {
+    "id": "e1",
+    "native": "Bulig!",
+    "english": "Help!",
+    "romanization": "BOO · leeg"
+  },
+  {
+    "id": "t1",
+    "native": "Subong",
+    "english": "Today",
+    "romanization": "SOO · bong"
+  }
+]
+

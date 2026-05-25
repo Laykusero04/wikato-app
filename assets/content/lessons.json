@@ -1,0 +1,38 @@
+[
+  {
+    "id": "greetings",
+    "title": "Greetings",
+    "icon": "waving_hand",
+    "phrase_ids": ["g1", "g2", "g3", "g4", "g5", "g6"]
+  },
+  {
+    "id": "common",
+    "title": "Common phrases",
+    "icon": "chat_bubble",
+    "phrase_ids": ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "t1"]
+  },
+  {
+    "id": "introductions",
+    "title": "Introductions",
+    "icon": "person_pin",
+    "phrase_ids": ["i1", "i2", "i3"]
+  },
+  {
+    "id": "numbers",
+    "title": "Numbers",
+    "icon": "tag",
+    "phrase_ids": ["n1", "n2", "n3"]
+  },
+  {
+    "id": "help",
+    "title": "Asking for help",
+    "icon": "help_outline",
+    "phrase_ids": ["h1", "h2", "h3", "h4", "d1", "d2", "e1"]
+  },
+  {
+    "id": "food",
+    "title": "Food / ordering",
+    "icon": "restaurant",
+    "phrase_ids": ["f1", "f2", "f3", "f4", "s1"]
+  }
+]

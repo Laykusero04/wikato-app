@@ -3,25 +3,11 @@ import 'package:go_router/go_router.dart';
 
 import '../colors/app_colors.dart';
 import '../components/primary_button.dart';
+import '../data/content_repository.dart';
+import '../data/dialects.dart';
+import '../data/progress_store.dart';
 import '../theme/app_theme.dart';
 import '../widgets/app_scaffold.dart';
-
-class _Dialect {
-  const _Dialect(this.code, this.name, this.region);
-
-  final String code;
-  final String name;
-  final String region;
-}
-
-const _dialects = <_Dialect>[
-  _Dialect('tl', 'Tagalog', 'Luzon · National'),
-  _Dialect('ceb', 'Cebuano', 'Visayas · Mindanao'),
-  _Dialect('ilo', 'Ilocano', 'Northern Luzon'),
-  _Dialect('hil', 'Hiligaynon', 'Western Visayas'),
-  _Dialect('war', 'Waray', 'Eastern Visayas'),
-  _Dialect('bik', 'Bikol', 'Bicol Region'),
-];
 
 class LanguageSelectScreen extends StatefulWidget {
   const LanguageSelectScreen({super.key});
@@ -32,6 +18,23 @@ class LanguageSelectScreen extends StatefulWidget {
 
 class _LanguageSelectScreenState extends State<LanguageSelectScreen> {
   String? _selected;
+  bool _saving = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _selected = ProgressStore.languageCode.value;
+  }
+
+  Future<void> _continue() async {
+    final code = _selected;
+    if (code == null || _saving) return;
+    setState(() => _saving = true);
+    await ProgressStore.setLanguageCode(code);
+    await ContentRepository.preload(code);
+    if (!mounted) return;
+    context.go('/home');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,9 +86,9 @@ class _LanguageSelectScreenState extends State<LanguageSelectScreen> {
                 crossAxisSpacing: AppSpacing.md,
                 childAspectRatio: 0.95,
               ),
-              itemCount: _dialects.length,
+              itemCount: dialects.length,
               itemBuilder: (context, i) {
-                final dialect = _dialects[i];
+                final dialect = dialects[i];
                 return _DialectTile(
                   dialect: dialect,
                   selected: _selected == dialect.code,
@@ -97,7 +100,7 @@ class _LanguageSelectScreenState extends State<LanguageSelectScreen> {
           const SizedBox(height: AppSpacing.md),
           PrimaryButton(
             label: 'Continue',
-            onPressed: _selected == null ? null : () => context.go('/home'),
+            onPressed: _selected == null || _saving ? null : _continue,
           ),
         ],
       ),
@@ -112,7 +115,7 @@ class _DialectTile extends StatelessWidget {
     required this.onTap,
   });
 
-  final _Dialect dialect;
+  final Dialect dialect;
   final bool selected;
   final VoidCallback onTap;
 

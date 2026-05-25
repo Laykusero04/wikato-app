@@ -1,0 +1,289 @@
+[
+  {
+    "id": "meeting_locals",
+    "title": "Meeting Filipinos for the first time",
+    "subtitle": "Warm greetings open every door here",
+    "context": "Filipinos are famously friendly. A simple greeting in Tagalog — even just 'Kumusta' — earns you smiles and patient help. Use these when you meet someone new at a sari-sari store, on a jeepney, or visiting a friend's home.",
+    "icon": "handshake",
+    "useful_phrase_ids": ["g1", "g2", "g3", "g4", "c2"],
+    "sample_reply": "You: Kumusta po! Magandang umaga.\nLocal: Magandang umaga rin po! Kumusta ka?\nYou: Mabuti naman, salamat."
+  },
+  {
+    "id": "ordering_food",
+    "title": "Ordering at a karinderya",
+    "subtitle": "Local eateries rarely hand out menus",
+    "context": "Karinderyas (small local eateries) usually have food laid out behind the counter — no menus, no English. You point and ask. A few polite Tagalog phrases make the whole exchange feel friendlier, and locals will happily teach you new words mid-order.",
+    "icon": "restaurant",
+    "useful_phrase_ids": ["g2", "c1", "f3", "f4", "f1", "c2"],
+    "sample_reply": "You: Magandang umaga po! Pakiabot po ng menu.\nServer: Eto po, ano gusto niyo?\nYou: Adobo po, walang sibuyas. Salamat!",
+    "dialogue": {
+      "start": "start",
+      "nodes": {
+        "start": {
+          "speaker": "Vendor",
+          "line": "Magandang umaga po! Ano po ang order ninyo?",
+          "translation": "Good morning! What would you like to order?",
+          "replies": [
+            {
+              "text": "Magandang umaga po. Pwede po bang makita ang menu?",
+              "translation": "Good morning. Could I see the menu?",
+              "next": "menu_handed"
+            },
+            {
+              "text": "Ano po ang specialty ninyo?",
+              "translation": "What's your specialty?",
+              "next": "ask_specialty"
+            },
+            {
+              "text": "Isang adobo po.",
+              "translation": "One adobo, please.",
+              "next": "ordered_adobo"
+            }
+          ]
+        },
+        "menu_handed": {
+          "speaker": "Vendor",
+          "line": "Walang menu po — dito lang tingnan. Mayroon kaming adobo, sinigang, lumpia, at kanin.",
+          "translation": "No menu — just look here. We have adobo, sinigang, lumpia, and rice.",
+          "replies": [
+            {
+              "text": "Isang adobo po, walang sibuyas.",
+              "translation": "One adobo, no onion.",
+              "next": "ordered_adobo"
+            },
+            {
+              "text": "Magkano po ang sinigang?",
+              "translation": "How much is the sinigang?",
+              "next": "asked_price"
+            }
+          ]
+        },
+        "ask_specialty": {
+          "speaker": "Vendor",
+          "line": "Ang adobo po. Sikat dito sa amin.",
+          "translation": "The adobo. It's famous here.",
+          "replies": [
+            {
+              "text": "Sige, isang adobo po.",
+              "translation": "Okay, one adobo.",
+              "next": "ordered_adobo"
+            },
+            {
+              "text": "Salamat. Pwede po bang magtingin muna?",
+              "translation": "Thanks. May I look around first?",
+              "next": "menu_handed"
+            }
+          ]
+        },
+        "asked_price": {
+          "speaker": "Vendor",
+          "line": "Tatlumpung piso po. May sahog na baboy.",
+          "translation": "Thirty pesos. It has pork.",
+          "replies": [
+            {
+              "text": "Sige po, isang sinigang.",
+              "translation": "Okay, one sinigang.",
+              "next": "ordered_sinigang"
+            },
+            {
+              "text": "Adobo na lang po.",
+              "translation": "Just the adobo, please.",
+              "next": "ordered_adobo"
+            }
+          ]
+        },
+        "ordered_adobo": {
+          "speaker": "Vendor",
+          "line": "Sige po. Anong inumin?",
+          "translation": "Sure. What drink?",
+          "replies": [
+            {
+              "text": "Tubig lang po.",
+              "translation": "Just water.",
+              "next": "finished"
+            },
+            {
+              "text": "Isang Coke po.",
+              "translation": "One Coke.",
+              "next": "finished"
+            },
+            {
+              "text": "Wala na po, salamat.",
+              "translation": "Nothing more, thanks.",
+              "next": "finished"
+            }
+          ]
+        },
+        "ordered_sinigang": {
+          "speaker": "Vendor",
+          "line": "Mainit-init pa po. Inumin?",
+          "translation": "Still piping hot. Drink?",
+          "replies": [
+            {
+              "text": "Tubig lang po, salamat.",
+              "translation": "Just water, thanks.",
+              "next": "finished"
+            },
+            {
+              "text": "Wala na po.",
+              "translation": "Nothing more.",
+              "next": "finished"
+            }
+          ]
+        },
+        "finished": {
+          "speaker": "Vendor",
+          "line": "Salamat po! Sandali lang, ihahanda ko na.",
+          "translation": "Thank you! One moment, I'll prepare it.",
+          "end_message": "You ordered like a regular. Sarap!"
+        }
+      }
+    }
+  },
+  {
+    "id": "asking_directions",
+    "title": "Getting lost in the city",
+    "subtitle": "Find your way when Google Maps fails",
+    "context": "Metro Manila streets aren't always well-labeled, and signs mix English, Tagalog, and old Spanish names. When you're lost, locals are your best map. Approach politely and you'll often get walked to the right spot.",
+    "icon": "navigation",
+    "useful_phrase_ids": ["g1", "h1", "h2", "h3", "c2"],
+    "sample_reply": "You: Pakiusap, pwede mo ba akong tulungan? Nasaan ang MRT station?\nLocal: Diretso lang po, may signage doon.\nYou: Salamat po!",
+    "dialogue": {
+      "start": "start",
+      "nodes": {
+        "start": {
+          "speaker": "Local",
+          "line": "Kumusta po? Mukhang naliligaw ka.",
+          "translation": "Hello? Looks like you're lost.",
+          "replies": [
+            {
+              "text": "Opo, pakiusap, pwede mo ba akong tulungan?",
+              "translation": "Yes — please, can you help me?",
+              "next": "confirmed"
+            },
+            {
+              "text": "Naliligaw ako. Nasaan ang MRT station?",
+              "translation": "I'm lost. Where is the MRT station?",
+              "next": "directions_mrt"
+            },
+            {
+              "text": "Hindi po, salamat.",
+              "translation": "No, thanks.",
+              "next": "declined"
+            }
+          ]
+        },
+        "confirmed": {
+          "speaker": "Local",
+          "line": "Sige po. Saan kayo papunta?",
+          "translation": "Sure. Where are you headed?",
+          "replies": [
+            {
+              "text": "Nasaan ang MRT station?",
+              "translation": "Where is the MRT station?",
+              "next": "directions_mrt"
+            },
+            {
+              "text": "Nasaan ang malapit na palengke?",
+              "translation": "Where is the nearest market?",
+              "next": "directions_market"
+            },
+            {
+              "text": "Naghahanap po ako ng restaurant.",
+              "translation": "I'm looking for a restaurant.",
+              "next": "restaurant"
+            }
+          ]
+        },
+        "directions_mrt": {
+          "speaker": "Local",
+          "line": "Diretso po lang, mga limang minutong lakad. May signage doon.",
+          "translation": "Just straight, about five minutes' walk. There's signage.",
+          "replies": [
+            {
+              "text": "Salamat po!",
+              "translation": "Thank you!",
+              "next": "finished"
+            },
+            {
+              "text": "Pwede po ba ninyong samahan ako?",
+              "translation": "Could you walk with me?",
+              "next": "walked_together"
+            }
+          ]
+        },
+        "directions_market": {
+          "speaker": "Local",
+          "line": "Sa kanan po, malapit lang. Sa kabilang block.",
+          "translation": "To the right, very close. Next block.",
+          "replies": [
+            {
+              "text": "Salamat po!",
+              "translation": "Thank you!",
+              "next": "finished"
+            },
+            {
+              "text": "Kaliwa ba o kanan po?",
+              "translation": "Left or right?",
+              "next": "clarify_market"
+            }
+          ]
+        },
+        "restaurant": {
+          "speaker": "Local",
+          "line": "May Jollibee sa kanto, o karinderya doon sa kanan.",
+          "translation": "There's a Jollibee at the corner, or a karinderya to the right.",
+          "replies": [
+            {
+              "text": "Salamat po sa tulong!",
+              "translation": "Thanks for the help!",
+              "next": "finished"
+            }
+          ]
+        },
+        "clarify_market": {
+          "speaker": "Local",
+          "line": "Kanan po, pagkatapos ng tindahan.",
+          "translation": "Right, after the store.",
+          "replies": [
+            {
+              "text": "Salamat po!",
+              "translation": "Thank you!",
+              "next": "finished"
+            }
+          ]
+        },
+        "walked_together": {
+          "speaker": "Local",
+          "line": "Sige po, tara. Malapit lang naman.",
+          "translation": "Sure, let's go. It's near anyway.",
+          "replies": [
+            {
+              "text": "Maraming salamat po!",
+              "translation": "Thank you so much!",
+              "next": "finished_walked"
+            }
+          ]
+        },
+        "declined": {
+          "speaker": "Local",
+          "line": "Sige po. Ingat ka!",
+          "translation": "Alright. Take care!",
+          "end_message": "Sometimes it's nice to figure it out alone."
+        },
+        "finished": {
+          "speaker": "Local",
+          "line": "Sige po, ingat!",
+          "translation": "Okay, take care!",
+          "end_message": "You got the directions you needed. Walang problema."
+        },
+        "finished_walked": {
+          "speaker": "Local",
+          "line": "Eto na po, ito ang station.",
+          "translation": "Here we are — this is the station.",
+          "end_message": "Filipinos will often walk you the whole way. Bayanihan!"
+        }
+      }
+    }
+  }
+]

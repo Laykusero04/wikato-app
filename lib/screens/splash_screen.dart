@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../colors/app_colors.dart';
+import '../data/progress_store.dart';
 import '../theme/app_theme.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -34,7 +35,9 @@ class _SplashScreenState extends State<SplashScreen>
     _controller.forward();
 
     _navTimer = Timer(const Duration(milliseconds: 1200), () {
-      if (mounted) context.go('/language');
+      if (!mounted) return;
+      final hasLanguage = ProgressStore.languageCode.value != null;
+      context.go(hasLanguage ? '/home' : '/language');
     });
   }
 
@@ -59,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'images/wikato-logo.png',
+                  'images/wikato-new-logo.png',
                   width: 160,
                   height: 160,
                   fit: BoxFit.contain,

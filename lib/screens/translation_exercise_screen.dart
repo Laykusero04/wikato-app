@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 
 import '../colors/app_colors.dart';
 import '../components/primary_button.dart';
+import '../data/content_repository.dart';
+import '../data/exercise_builder.dart';
+import '../data/notification_service.dart';
+import '../data/progress_store.dart';
 import '../theme/app_theme.dart';
 import '../widgets/app_scaffold.dart';
+import '../widgets/exercise_runner.dart';
 
 class TranslationExerciseScreen extends StatefulWidget {
   const TranslationExerciseScreen({super.key, required this.lessonId});
@@ -18,227 +22,134 @@ class TranslationExerciseScreen extends StatefulWidget {
 }
 
 class _TranslationExerciseScreenState extends State<TranslationExerciseScreen> {
-  static const String _question = 'Kumusta';
-  static const String _correct = 'Hello';
-  static const List<String> _options = <String>[
-    'Goodbye',
-    'Hello',
-    'Thank you',
-    'Please',
-  ];
+  late final List<ExerciseStep> _steps;
 
-  String? _selected;
+  @override
+  void initState() {
+    super.initState();
+    final lesson = ContentRepository.findLesson(widget.lessonId);
+    _steps = lesson == null
+        ? const []
+        : ExerciseBuilder.stepsForPhraseIds(lesson.phraseIds);
+  }
 
-  bool get _answered => _selected != null;
-  bool get _isCorrect => _selected == _correct;
-
-  void _select(String option) {
-    setState(() => _selected = option);
-    HapticFeedback.selectionClick();
+  Future<void> _onFinish() async {
+    final wasFirst = !ProgressStore.firstLessonComplete.value;
+    await ProgressStore.markFirstLessonComplete();
+    if (!mounted) return;
+    if (wasFirst && !ProgressStore.reminderEnabled.value) {
+      await showModalBottomSheet<void>(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (_) => const _ReminderOptInSheet(),
+      );
+    }
+    if (!mounted) return;
+    context.pop();
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    if (_steps.isEmpty) {
+      return const AppScaffold(
+        title: 'Exercise',
+        child: Center(child: Text('No phrases to practice.')),
+      );
+    }
     return AppScaffold(
       title: 'Translation exercise',
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text('Translate this phrase:', style: theme.textTheme.bodyMedium),
-          const SizedBox(height: AppSpacing.md),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.lg,
-              vertical: AppSpacing.xl,
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.lessonSoft,
-              borderRadius: BorderRadius.circular(AppRadius.xl),
-            ),
-            child: Center(
-              child: Text(
-                _question,
-                style: theme.textTheme.displayLarge?.copyWith(
-                  color: AppColors.lesson,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: AppSpacing.xl),
-          ..._options.map((option) {
-            final isSelected = _selected == option;
-            final isCorrectOption = option == _correct;
-            final state = !_answered
-                ? _OptionState.idle
-                : isSelected
-                ? (isCorrectOption
-                      ? _OptionState.selectedCorrect
-                      : _OptionState.selectedWrong)
-                : (isCorrectOption
-                      ? _OptionState.revealCorrect
-                      : _OptionState.disabled);
-            return Padding(
-              padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-              child: _OptionButton(
-                label: option,
-                state: state,
-                onTap: _answered ? null : () => _select(option),
-              ),
-            );
-          }),
-          const Spacer(),
-          if (_answered) ...[
-            _Feedback(correct: _isCorrect),
-            const SizedBox(height: AppSpacing.md),
-            PrimaryButton(
-              label: 'Done',
-              onPressed: () => context.pop(),
-            ),
-          ],
-        ],
-      ),
+      child: ExerciseRunner(steps: _steps, onFinish: _onFinish),
     );
   }
 }
 
-enum _OptionState {
-  idle,
-  selectedCorrect,
-  selectedWrong,
-  revealCorrect,
-  disabled,
-}
-
-class _OptionButton extends StatelessWidget {
-  const _OptionButton({
-    required this.label,
-    required this.state,
-    required this.onTap,
-  });
-
-  final String label;
-  final _OptionState state;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final Color border;
-    final Color background;
-    final Color foreground;
-    final IconData? trailingIcon;
-
-    switch (state) {
-      case _OptionState.idle:
-        border = AppColors.outline;
-        background = AppColors.surface;
-        foreground = AppColors.textPrimary;
-        trailingIcon = null;
-      case _OptionState.selectedCorrect:
-        border = AppColors.success;
-        background = AppColors.success.withValues(alpha: 0.10);
-        foreground = AppColors.success;
-        trailingIcon = Icons.check_circle_rounded;
-      case _OptionState.selectedWrong:
-        border = AppColors.error;
-        background = AppColors.error.withValues(alpha: 0.10);
-        foreground = AppColors.error;
-        trailingIcon = Icons.cancel_rounded;
-      case _OptionState.revealCorrect:
-        border = AppColors.success;
-        background = AppColors.surface;
-        foreground = AppColors.success;
-        trailingIcon = Icons.check_circle_outline_rounded;
-      case _OptionState.disabled:
-        border = AppColors.outline;
-        background = AppColors.surface;
-        foreground = AppColors.textTertiary;
-        trailingIcon = null;
-    }
-
-    return Material(
-      color: background,
-      borderRadius: BorderRadius.circular(AppRadius.lg),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(AppRadius.lg),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 180),
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSpacing.md,
-            vertical: AppSpacing.md,
-          ),
-          decoration: BoxDecoration(
-            border: Border.all(color: border, width: 1.5),
-            borderRadius: BorderRadius.circular(AppRadius.lg),
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  label,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: foreground,
-                  ),
-                ),
-              ),
-              if (trailingIcon != null)
-                Icon(trailingIcon, color: foreground),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _Feedback extends StatelessWidget {
-  const _Feedback({required this.correct});
-
-  final bool correct;
+class _ReminderOptInSheet extends StatelessWidget {
+  const _ReminderOptInSheet();
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final color = correct ? AppColors.success : AppColors.error;
-    final icon = correct
-        ? Icons.celebration_rounded
-        : Icons.refresh_rounded;
-    final title = correct ? 'Nice one!' : 'Not quite';
-    final body = correct
-        ? 'You picked the right translation.'
-        : 'The correct answer is highlighted above.';
-
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.md),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.10),
-        borderRadius: BorderRadius.circular(AppRadius.lg),
+      padding: EdgeInsets.fromLTRB(
+        AppSpacing.lg,
+        AppSpacing.md,
+        AppSpacing.lg,
+        AppSpacing.lg + MediaQuery.of(context).padding.bottom,
       ),
-      child: Row(
+      decoration: const BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(AppRadius.xl),
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Icon(icon, color: color),
-          const SizedBox(width: AppSpacing.sm),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: theme.textTheme.titleMedium?.copyWith(color: color),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  body,
-                  style: theme.textTheme.bodyMedium?.copyWith(color: color),
-                ),
-              ],
+          Center(
+            child: Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: AppColors.outline,
+                borderRadius: BorderRadius.circular(AppRadius.pill),
+              ),
             ),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+          const Icon(
+            Icons.notifications_active_outlined,
+            size: 48,
+            color: AppColors.scenario,
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          Text(
+            'Want a daily nudge?',
+            textAlign: TextAlign.center,
+            style: theme.textTheme.titleLarge,
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          Text(
+            'A short reminder at 7pm to keep your streak going. You can change the time anytime.',
+            textAlign: TextAlign.center,
+            style: theme.textTheme.bodyMedium,
+          ),
+          const SizedBox(height: AppSpacing.lg),
+          PrimaryButton(
+            label: 'Enable reminders',
+            icon: Icons.check_rounded,
+            onPressed: () => _enable(context),
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Not now'),
           ),
         ],
       ),
     );
+  }
+
+  Future<void> _enable(BuildContext context) async {
+    final granted = await NotificationService.requestPermission();
+    if (!granted) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context)
+        ..clearSnackBars()
+        ..showSnackBar(
+          const SnackBar(
+            content: Text('Permission denied. Enable in system settings.'),
+          ),
+        );
+      Navigator.of(context).pop();
+      return;
+    }
+    await ProgressStore.setReminderEnabled(true);
+    await NotificationService.scheduleDaily(
+      ProgressStore.reminderHour.value,
+    );
+    if (!context.mounted) return;
+    Navigator.of(context).pop();
   }
 }
